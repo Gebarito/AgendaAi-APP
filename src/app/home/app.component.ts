@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './../shared/header/header.component';
 
 @Component({
@@ -7,9 +7,15 @@ import { HeaderComponent } from './../shared/header/header.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
 
 export class AppComponent {
   title = 'AgendaAi-APP';
+
+  constructor(private router: Router) {}
+
+  navigateToLoginCustomer(): void {
+    this.router.navigate(['/login-customer']);
+  }
 }

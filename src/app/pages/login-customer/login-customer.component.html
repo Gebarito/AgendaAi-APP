@@ -1,46 +1,48 @@
-<div class="login-container">
-    <h2>Cadastro de Cliente</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="cpf">CPF</label>
-        <input id="cpf" formControlName="cpf" type="text" placeholder="Digite seu CPF" />
-        <div class="error" *ngIf="loginForm.get('cpf')?.invalid && loginForm.get('cpf')?.touched">
-          CPF é obrigatório.
+<body>
+    <div class="login-container">
+        <h2>Cadastro de Cliente</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input id="cpf" formControlName="cpf" type="text" placeholder="Digite seu CPF" />
+            <div class="error" *ngIf="loginForm.get('cpf')?.invalid && loginForm.get('cpf')?.touched">
+            CPF é obrigatório.
+            </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input id="name" formControlName="name" type="text" placeholder="Digite seu Nome" />
-        <div class="error" *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched">
-          Nome é obrigatório.
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input id="name" formControlName="name" type="text" placeholder="Digite seu Nome" />
+            <div class="error" *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched">
+            Nome é obrigatório.
+            </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" placeholder="Digite seu Email" />
-        <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-          Email inválido.
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" type="email" placeholder="Digite seu Email" />
+            <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Email inválido.
+            </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input id="password" formControlName="password" type="password" placeholder="Digite sua Senha" />
-        <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-          Senha deve ter ao menos 6 caracteres.
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input id="password" formControlName="password" type="password" placeholder="Digite sua Senha" />
+            <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Senha deve ter ao menos 6 caracteres.
+            </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="telNumber">Telefone</label>
-        <input id="telNumber" formControlName="telNumber" type="text" placeholder="Digite seu Telefone" />
-        <div class="error" *ngIf="loginForm.get('telNumber')?.invalid && loginForm.get('telNumber')?.touched">
-          Telefone é obrigatório.
+        <div class="form-group">
+            <label for="telNumber">Telefone</label>
+            <input id="telNumber" formControlName="telNumber" type="text" placeholder="Digite seu Telefone" />
+            <div class="error" *ngIf="loginForm.get('telNumber')?.invalid && loginForm.get('telNumber')?.touched">
+            Telefone é obrigatório.
+            </div>
         </div>
-      </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">Cadastrar</button>
-    </form>
-  </div>
+        <button type="submit" [disabled]="loginForm.invalid">Cadastrar</button>
+        </form>
+    </div>
+</body>
