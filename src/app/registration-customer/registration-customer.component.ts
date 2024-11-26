@@ -2,44 +2,49 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../shared/header/header.component";
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../authentication/AuthService';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-registration-customer',
   standalone: true,
-  imports: [HeaderComponent, CommonModule],
+  imports: [HeaderComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './registration-customer.component.html',
   styleUrl: './registration-customer.component.scss'
 })
 
 export class RegistrationCustomerComponent {
-  haveAccount: boolean = true;
-  apiUrlBase: string = 'http://localhost:8080/customer/';
+  haveAccount: boolean = false;
+  apiUrlBase: string = 'http://localhost:8080/customer/subscribe';
+  uploadForm: FormGroup = new FormGroup({});
+  downloadForm: FormGroup = new FormGroup({});
 
   constructor(
+    private formBuilder: FormBuilder,
     private authService: AuthService
   ){}
+
+  ngOnInit() {
+    this.uploadForm = this.formBuilder.group({
+      name: [''],
+      email: [''],
+      cpf: [''],
+      password: [''],
+      telNumber: [''],
+      cep: [''],
+      address: ['']
+    });
+  }
 
   toggleHaveAccount() {
     this.haveAccount = !this.haveAccount;
   }
 
-  validateFormLogin(form: any) {
-    return(
-      (form.value.email !== '' || form.value.email !== null || !form.value.email) &&
-      (form.value.password !== '' || form.value.password !== null || !form.value.cpf)
-    );
-  }
-
-
   validateCredentials(form: any, response: any) {
     return ((form.cpf.value === response.cpf.value) && (form.password.value === response.password.value));
   }
 
-  login(form: any) {
-    if (!this.validateFormLogin(form)) {
-      console.error('Formulario inválido');
-      return;
-    }
-
+  login() {    
     this.authService.login(); 
   }
 
@@ -47,5 +52,47 @@ export class RegistrationCustomerComponent {
     this.authService.logout();
   }
 
+  onFormSubmitRegister(event: any) {
+    if (event.target.cpf.value && event.target.password.value) {
+      const formData = new FormData();
+      formData.append('cpf', event.target.cpf.value);
+      formData.append('password', event.target.password.value);
+      fetch(this.apiUrlBase, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (this.validateCredentials(event.target, response)) {
+          this.login();
+          alert('Cadastro realizado com sucesso!');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Erro ao realizar cadastro!')
+      });
+  
+    }
+  }
+
+  onFormSubmitLogin(event: any) {
+    if (event.target.cpf.value && event.target.password.value) {
+      const formData = new FormData();
+      formData.append('cpf', event.target.cpf.value);
+      formData.append('password', event.target.password.value);
+      fetch(this.apiUrlBase, {
+        method: 'GET',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (this.validateCredentials(event.target, response)) {
+          this.login();
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  }
 
 }
