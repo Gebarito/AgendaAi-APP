@@ -15,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class RegistrationCustomerComponent {
   haveAccount: boolean = false;
-  apiUrlBase: string = 'http://localhost:8080/customer/subscribe';
+  apiUrlSubscribe: string = 'http://localhost:8080/customer/subscribe';
+  apiUrlGet: string = 'http://localhost:8080/customer/';
   uploadForm: FormGroup = new FormGroup({});
   downloadForm: FormGroup = new FormGroup({});
 
@@ -57,7 +58,7 @@ export class RegistrationCustomerComponent {
       const formData = new FormData();
       formData.append('cpf', event.target.cpf.value);
       formData.append('password', event.target.password.value);
-      fetch(this.apiUrlBase, {
+      fetch(this.apiUrlSubscribe, {
         method: 'POST',
         body: formData
       })
@@ -79,9 +80,11 @@ export class RegistrationCustomerComponent {
   onFormSubmitLogin(event: any) {
     if (event.target.cpf.value && event.target.password.value) {
       const formData = new FormData();
+      const queryCpf = event.target.cpf.value;
+  
       formData.append('cpf', event.target.cpf.value);
       formData.append('password', event.target.password.value);
-      fetch(this.apiUrlBase, {
+      fetch(this.apiUrlGet + queryCpf, {
         method: 'GET',
         body: formData
       })
