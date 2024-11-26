@@ -1,14 +1,51 @@
 <app-header></app-header>
-<div class="login-container">
-    <form>
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" type="email" required />
-      </div>
-      <div>
-        <label for="password">Senha:</label>
-        <input id="password" type="password" required />
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+
+<div class="toggle-container">
+    <button (click)="toggleHaveAccount()" class="btn toggle-btn">
+      {{ haveAccount ? 'Ainda não tenho conta' : 'Já tenho conta' }}
+    </button>
+</div>
+
+<div *ngIf="haveAccount" class="login-container">
+    <div class="overlay">
+        <form>
+            <div>
+                <label for="email">Email:</label>
+                <input id="email" type="email" required />
+            </div>
+            <div>
+                <label for="password">Senha:</label>
+                <input id="password" type="password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="!haveAccount" class="login-container">
+    <div class="overlay">
+        <form>
+                <div>
+            <label for="name">Nome:</label>
+            <input id="name" type="text" required />
+        </div>
+        <div>
+            <label for="CPF">CPF:</label>
+            <input id="cpf" type="text" required />
+            </div>
+            <div>
+                <label for="phone">Telefone:</label>
+                <input id="phone" type="text" required />
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input id="email" type="email" required />
+            </div>
+            <div>
+                <label for="password">Senha:</label>
+                <input id="password" type="password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
 </div>
