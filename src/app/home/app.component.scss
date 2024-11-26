@@ -1,0 +1,78 @@
+  body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+  }
+
+  .landing-container {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      background-image: url('../../assets/home/tempBackground.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .content {
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      border-radius: 10px;
+  }
+
+  .title {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+  }
+
+  .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+  }
+
+  .btn-primary {
+      background-color: #007bff;
+      color: white;
+      border: none;
+  }
+
+  .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+  }
+
+  .btn:hover {
+      transform: scale(1.05);
+  }
+
