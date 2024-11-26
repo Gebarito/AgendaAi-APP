@@ -1,0 +1,36 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: 0 1rem;
+    }
+  
+    .title h1 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0;
+    }
+  
+    .logo img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+  
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+  }
+  
