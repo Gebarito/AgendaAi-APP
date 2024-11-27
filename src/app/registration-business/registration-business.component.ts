@@ -6,17 +6,17 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-registration-customer',
+  selector: 'app-registration-business',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, ReactiveFormsModule],
-  templateUrl: './registration-customer.component.html',
-  styleUrl: './registration-customer.component.scss'
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
+  templateUrl: './registration-business.component.html',
+  styleUrl: './registration-business.component.scss'
 })
 
-export class RegistrationCustomerComponent {
+export class RegistrationBusinessComponent {
   haveAccount: boolean = false;
-  apiUrlSubscribe: string = 'http://localhost:8080/customer/subscribe';
-  apiUrlGet: string = 'http://localhost:8080/customer/';
+  apiUrlSubscribe: string = 'http://localhost:8080/business/subscribe';
+  apiUrlGet: string = 'http://localhost:8080/business/';
   uploadForm: FormGroup = new FormGroup({});
   downloadForm: FormGroup = new FormGroup({});
 
@@ -29,7 +29,7 @@ export class RegistrationCustomerComponent {
     this.uploadForm = this.formBuilder.group({
       name: [''],
       email: [''],
-      cpf: [''],
+      cnpj: [''],
       password: [''],
       telNumber: [''],
       cep: [''],
@@ -42,11 +42,11 @@ export class RegistrationCustomerComponent {
   }
 
   validateCredentials(form: any, response: any) {
-    return ((form.cpf.value === response.cpf.value) && (form.password.value === response.password.value));
+    return ((form.cnpj.value === response.cnpj.value) && (form.password.value === response.password.value));
   }
 
-  login() {    
-    this.authService.setUserType(this.authService.customerType);
+  login() {
+    this.authService.setUserType(this.authService.businessType);
     this.authService.login(); 
   }
 
@@ -56,9 +56,9 @@ export class RegistrationCustomerComponent {
   }
 
   onFormSubmitRegister(event: any) {
-    if (event.target.cpf.value && event.target.password.value) {
+    if (event.target.cnpj.value && event.target.password.value) {
       const formData = new FormData();
-      formData.append('cpf', event.target.cpf.value);
+      formData.append('cnpj', event.target.cnpj.value);
       formData.append('password', event.target.password.value);
       fetch(this.apiUrlSubscribe, {
         method: 'POST',
@@ -80,13 +80,13 @@ export class RegistrationCustomerComponent {
   }
 
   onFormSubmitLogin(event: any) {
-    if (event.target.cpf.value && event.target.password.value) {
+    if (event.target.cnpj.value && event.target.password.value) {
       const formData = new FormData();
-      const queryCpf = event.target.cpf.value;
+      const queryCnpj = event.target.cnpj.value;
   
-      formData.append('cpf', event.target.cpf.value);
+      formData.append('cnpj', event.target.cnpj.value);
       formData.append('password', event.target.password.value);
-      fetch(this.apiUrlGet + queryCpf, {
+      fetch(this.apiUrlGet + queryCnpj, {
         method: 'GET',
         body: formData
       })
