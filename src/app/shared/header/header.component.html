@@ -4,20 +4,11 @@
 			<div class="title">
 			<h1 [routerLink]="['/']">AgendaAi!</h1>
 		</div>
-		<div *ngIf="isLoggedIn" class="search-bar">
-			<form>
-			<span class="icon">
-			<img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" width="20" height="20" />
-			</span>
-			<input
-			type="text"
-			placeholder="Buscar..."
-			aria-label="Buscar"
-			class="search-input"
-			/>
-			<button type="submit" class="search-button">Pesquisar</button>
-			</form>
-			</div>
+		<div *ngIf="!isLoggedIn" class="search-bar">
+			<a [routerLink]="['/jobs-query']" class="link">Serviços</a>
+			<a [routerLink]="['/business-query']" class="link">Prestadores</a>
+			<a [routerLink]="['/profile']" class="link">Perfil</a>
+		</div>
 			<div class="logo">
 				<a href="https://github.com/rmmourad/AgendaAi/" target="_blank" rel="noopener noreferrer">
 				  <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 96">
