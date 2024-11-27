@@ -9,6 +9,10 @@ export class AuthService {
   
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
+  private userType: string = '';
+  businessType = 'business';
+  customerType = 'customer';
+
   login() {
     this.isLoggedInSubject.next(true);
   }
@@ -19,6 +23,14 @@ export class AuthService {
 
   getCurrentLoginStatus(): boolean {
     return this.isLoggedInSubject.value;
+  }
+
+  setUserType(userType: string) {
+    this.userType = userType;
+  }
+
+  getUserType(): string {
+    return this.userType;
   }
 
 }
