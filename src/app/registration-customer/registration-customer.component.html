@@ -18,7 +18,7 @@
 
 </div>
 
-<div *ngIf="!haveAccount" class="login-container">
+<div *ngIf="!haveAccount && !getLoginStatus()" class="login-container">
     <div class="overlay">
         <form [formGroup]="uploadForm" (ngSubmit)="onFormSubmitRegister($event)">
             <div>

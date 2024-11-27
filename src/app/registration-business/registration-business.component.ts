@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../authentication/AuthService';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration-business',
@@ -15,14 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class RegistrationBusinessComponent {
   haveAccount: boolean = false;
-  apiUrlSubscribe: string = 'http://localhost:8080/business/subscribe';
-  apiUrlGet: string = 'http://localhost:8080/business/';
+  apiUrlSubscribe: string = 'ec2-54-87-25-51.compute-1.amazonaws.com:8080/subscribe';
+  apiUrlGet: string = 'ec2-54-87-25-51.compute-1.amazonaws.com:8080/business/';
   uploadForm: FormGroup = new FormGroup({});
   downloadForm: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient,
   ){}
 
   ngOnInit() {
@@ -55,27 +58,22 @@ export class RegistrationBusinessComponent {
     this.authService.logout();
   }
 
+ 
   onFormSubmitRegister(event: any) {
-    if (event.target.cnpj.value && event.target.password.value) {
-      const formData = new FormData();
-      formData.append('cnpj', event.target.cnpj.value);
-      formData.append('password', event.target.password.value);
-      fetch(this.apiUrlSubscribe, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(response => {
-        if (this.validateCredentials(event.target, response)) {
-          this.login();
-          alert('Cadastro realizado com sucesso!');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Erro ao realizar cadastro!')
-      });
+    if (this.uploadForm.valid) {
+      const formData = this.uploadForm.value;
   
+      this.http.post('https://ec2-54-87-25-51.compute-1.amazonaws.com:8080/subscribe', formData)
+        .subscribe({
+          next: (response) => {
+            this.login();
+            alert('Cadastro realizado com sucesso!');
+          },
+          error: (error) => {
+            console.error('Error:', error);
+            alert('Erro ao realizar cadastro!');
+          }
+        });
     }
   }
 
@@ -98,6 +96,10 @@ export class RegistrationBusinessComponent {
       })
       .catch(error => console.error('Error:', error));
     }
+  }
+
+  getLoginStatus() {
+    return this.authService.getCurrentLoginStatus();
   }
 
 }
