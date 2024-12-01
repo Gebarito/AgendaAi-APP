@@ -8,14 +8,19 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { BusinessComponent } from './components/business/business.component';
 import { OrderComponent } from './components/order/order.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
+    /** Custom Component */
     AppComponent,
     JobsComponent,
     BusinessComponent,
     OrderComponent,
-    CustomerComponent
+    CustomerComponent,
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
