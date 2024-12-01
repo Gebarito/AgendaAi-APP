@@ -11,6 +11,8 @@ export class AuthService {
     currentPassword = '';
     accountType = '';
 
+    inSession = false;
+
     constructor() {}
 
     login(
@@ -31,6 +33,8 @@ export class AuthService {
             this.currentDoc = customer?.cpf || '';
             this.currentPassword = customer?.password || '';
         }
+
+        this.inSession = true;
     }
 
     logout(){
@@ -38,6 +42,7 @@ export class AuthService {
         this.currentDoc = '';
         this.currentPassword = '';
         this.accountType = '';
+        this.inSession = false;
     }
 
     getCurrentId() {
@@ -46,6 +51,10 @@ export class AuthService {
 
     getCurrentDoc() {
         return this.currentDoc;
+    }
+
+    isInSession() {
+        return this.inSession;
     }
     
 }
