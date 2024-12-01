@@ -28,6 +28,6 @@ import { HomeComponent } from './components/home/home.component';
     HttpClientModule, /** API Connection requirement (POST, GET, PUT, DELETE) */
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [HomeComponent]
 })
 export class AppModule { }
