@@ -35,5 +35,5 @@ export class JobsServices {
     ) {
         return this.httpClient.delete<Job>(`${this.url}/${id}`);
     }
-    
+
 }
