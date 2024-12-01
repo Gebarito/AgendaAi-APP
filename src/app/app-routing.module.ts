@@ -5,14 +5,11 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { BusinessComponent } from './components/business/business.component';
 
 const routes: Routes = [
-  /** redirect to home when there is no path or unknown path */
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: '***', component: HomeComponent },
-
-  /** Custom component paths */
-  { path: 'customer', component: CustomerComponent},
-  { path: 'business', component: BusinessComponent}
+  { path: 'customer', component: CustomerComponent },
+  { path: 'business', component: BusinessComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

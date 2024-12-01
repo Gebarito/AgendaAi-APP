@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,19 +12,18 @@ import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
-    /** Custom Component */
     AppComponent,
     JobsComponent,
-    BusinessComponent,
     OrderComponent,
     CustomerComponent,
+    BusinessComponent,
     NavbarComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, /** API Connection requirement (POST, GET, PUT, DELETE) */
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [HomeComponent]

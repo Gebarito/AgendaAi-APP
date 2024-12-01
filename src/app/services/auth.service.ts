@@ -11,7 +11,7 @@ export class AuthService {
     currentPassword = '';
     accountType = '';
 
-    inSession = false;
+    inSession = true;
 
     constructor() {}
 
