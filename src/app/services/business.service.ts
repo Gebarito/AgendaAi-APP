@@ -30,8 +30,9 @@ export class BusinessService {
     }
 
     deleteBusiness(
-        id: string
+        id: number
     ) {
         return this.httpClient.delete<Business>(`${this.url}/${id}`);
     }
+
 }
