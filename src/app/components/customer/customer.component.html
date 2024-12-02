@@ -1,0 +1,61 @@
+<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+
+<div class="customer-container">
+    <div class="data-container" *ngIf="authService.isInSession()">
+        <div class="login" *ngIf="haveAccount">
+            <form>
+                <div>
+                    <label>CPF: </label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input type="password"/>
+                </div>
+                <button (click)="entrar()">Entrar</button>
+            </form>
+        </div>
+        <div class="register" *ngIf="!haveAccount">
+            <form>
+                <div>
+                    <label>CPF: </label>
+                    <input type="text" [(ngModel)]="cpf" name="cpf"/>
+                </div>
+                <div>
+                    <label>Nome: </label>
+                    <input type="text" [(ngModel)]="name" name="name"/>
+                </div>
+                <div>
+                    <label>Email: </label>
+                    <input type="text" [(ngModel)]="email" name="email"/>
+                </div>
+                <div>
+                    <label>Cep: </label>
+                    <input type="text" [(ngModel)]="cep" name="cep"/>
+                </div>
+                    <label>Endereco: </label>
+                    <input type="text" [(ngModel)]="address" name="address"/>
+                <div>
+                    <label>Senha: </label>
+                    <input type="password" [(ngModel)]="password" name="password"/>
+                </div>
+                <button (click)="register()">Registrar</button>
+            </form>
+        </div>
+        <p (click)="toggleRegister()"> {{this.haveAccount ? 'Cadastre-se agora!' : 'Ja possui uma conta? Entre!'}}</p>
+    </div>
+    <div class="already-logged-in" *ngIf="!authService.isInSession()">
+        <div class="user-data">
+            <h2>Olá, ...</h2>
+            <hr>
+            
+            <button >Editar </button> <br>
+            <button (click)="this.authService.logout()">Sair</button> <br>
+            <button >Deletar conta</button> <br>
+        </div>
+        <h2>Seus pedidos</h2>
+        <hr>
+        <!-- Renderizar pedidos -->
+    </div>
+</div>
