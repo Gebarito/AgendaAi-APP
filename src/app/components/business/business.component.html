@@ -1,0 +1,57 @@
+<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+
+<div class="customer-container">
+    <div class="data-container" *ngIf="!authService.isInSession()">
+        <div class="login" *ngIf="haveAccount">
+            <form>
+                <div>
+                    <label>CPF: </label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input type="password"/>
+                </div>
+                <button>Entrar</button>
+            </form>
+        </div>
+        <div class="register" *ngIf="!haveAccount">
+            <form>
+                <div>
+                    <label>CNPJ: </label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>Nome: </label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>Email: </label>
+                    <input type="email"/>
+                </div>
+                <div>
+                    <label>Senha: </label>
+                    <input type="password"/>
+                </div>
+                <button>Registrar</button>
+            </form>
+        </div>
+        <p (click)="toggleRegister()"> {{this.haveAccount ? 'Cadastre-se agora!' : 'Ja possui uma conta? Entre!'}}</p>
+    </div>
+    <div class="already-logged-in" *ngIf="authService.isInSession()">
+        <div class="user-data">
+            <h2>Olá, ...</h2>
+            <hr>
+            
+            <button >Editar </button> <br>
+            <button (click)="this.authService.logout()">Sair</button> <br>
+            <button >Deletar conta</button> <br>
+        </div>
+        <h2>Seus serviços</h2>
+        <hr>
+        <!-- Renderizar jobs -->
+         <h2>Agendamentos</h2>
+         <hr>
+    </div>
+</div>
