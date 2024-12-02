@@ -14,7 +14,7 @@ jobs:
       with:
           node-version: 20.x
     - run: npm install
-    - run: npm run build -- --prod
+    - run: ng build --configuration production
     - name: Transfer Build Folder on EC2 Instance
       uses: easingthemes/ssh-deploy@v2.1.4
       env:
