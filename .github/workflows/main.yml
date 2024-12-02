@@ -22,7 +22,7 @@ jobs:
       run: npm install -g @angular/cli
 
     - name: Build Application
-      run: ng build --watch
+      run: ng build --configuration=production
 
     - name: Transfer Build Folder to EC2 Instance
       uses: easingthemes/ssh-deploy@v2.1.4
