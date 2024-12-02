@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 
 <div class="customer-container">
-    <div class="data-container" *ngIf="!authService.isInSession()">
+    <div class="data-container" *ngIf="authService.isInSession()">
         <div class="login" *ngIf="haveAccount">
             <form>
                 <div>
@@ -13,33 +13,39 @@
                     <label>Password: </label>
                     <input type="password"/>
                 </div>
-                <button>Entrar</button>
+                <button (click)="entrar()">Entrar</button>
             </form>
         </div>
         <div class="register" *ngIf="!haveAccount">
             <form>
                 <div>
                     <label>CPF: </label>
-                    <input type="text"/>
+                    <input type="text" [(ngModel)]="cpf" name="cpf"/>
                 </div>
                 <div>
                     <label>Nome: </label>
-                    <input type="text"/>
+                    <input type="text" [(ngModel)]="name" name="name"/>
                 </div>
                 <div>
                     <label>Email: </label>
-                    <input type="email"/>
+                    <input type="text" [(ngModel)]="email" name="email"/>
                 </div>
                 <div>
-                    <label>Senha: </label>
-                    <input type="password"/>
+                    <label>Cep: </label>
+                    <input type="text" [(ngModel)]="cep" name="cep"/>
                 </div>
-                <button>Registrar</button>
+                    <label>Endereco: </label>
+                    <input type="text" [(ngModel)]="address" name="address"/>
+                <div>
+                    <label>Senha: </label>
+                    <input type="password" [(ngModel)]="password" name="password"/>
+                </div>
+                <button (click)="register()">Registrar</button>
             </form>
         </div>
         <p (click)="toggleRegister()"> {{this.haveAccount ? 'Cadastre-se agora!' : 'Ja possui uma conta? Entre!'}}</p>
     </div>
-    <div class="already-logged-in" *ngIf="authService.isInSession()">
+    <div class="already-logged-in" *ngIf="!authService.isInSession()">
         <div class="user-data">
             <h2>Olá, ...</h2>
             <hr>

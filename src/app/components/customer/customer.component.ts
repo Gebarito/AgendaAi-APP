@@ -36,6 +36,30 @@ export class CustomerComponent {
     this.authService = authservice;
   }
 
+  entrar() {
+    this.customer$.forEach(customer => {
+      if (
+        customer.password === this.password &&
+        customer.cpf === this.cpf
+      ){
+        this.authservice.login('customer', customer);
+      }
+    });
+  }
+
+  register() {
+    this.customerService.postCustomer({
+      id: this.id,
+      cpf: this.cpf,
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      telNumber: this.telNumber,
+      cep: this.cep,
+      address: this.address,
+    }).subscribe();
+  }
+
   toggleRegister() {
     this.haveAccount = !this.haveAccount;
   }

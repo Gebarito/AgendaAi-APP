@@ -24,7 +24,7 @@ export class HomeComponent {
   }
 
   outOfHome() {
-    return this.router.url !== '/home';
+    return this.router.url !== 'home';
   }
 
 }
