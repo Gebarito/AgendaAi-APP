@@ -9,13 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - name: Use Node.js 20.x to build
       uses: actions/setup-node@v2
       with:
           node-version: 20.x
-    - run: npm install
-    - run: ng build --configuration production
-    - name: Transfer Build Folder on EC2 Instance
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+
+    - name: Build Application
+      run: ng build --configuration production
+
+    - name: Transfer Build Folder to EC2 Instance
       uses: easingthemes/ssh-deploy@v2.1.4
       env:
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
