@@ -31,7 +31,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
         REMOTE_USER: ${{ secrets.DEPLOY_USER }}
         REMOTE_PORT: ${{ secrets.DEPLOY_PORT }}
-        SOURCE: "dist/AgendaAi/"
+        SOURCE: "dist/angular-deploy/"
         TARGET: ${{ secrets.DEPLOY_TARGET }}
 
 
