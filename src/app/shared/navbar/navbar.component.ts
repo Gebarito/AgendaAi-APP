@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomeComponent } from 'src/app/components/home/home.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent {
   constructor(
+    private home: HomeComponent,
     private router: Router,
     private session: AuthService
   ) { 
@@ -24,7 +26,7 @@ export class NavbarComponent {
   }
   
   redirectTo(component: string) {
-    this.router.navigate(['/' + component]);
+    this.home.redirectToComponent(component);
   }
 
 }

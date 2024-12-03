@@ -4,7 +4,8 @@
 
 <!-- Home component-->
 <body>
-  <div  *ngIf="outOfHome">
+  <div>
+    <div *ngIf="getStep() == 'home'">
       <div class="title-container">
         <h1> Agenda Ai </h1>
         <h3>
@@ -13,10 +14,34 @@
           Confiável e seguro!
         </h3>
       </div>
-      <div class="buttons-container">
-        <p (click)="redirectToComponent('customer')">Cliente</p>
-        <p (click)="redirectToComponent('business')">Empresas</p>
+        <div class="buttons-container">
+          <p (click)="redirectToComponent('customer')">Cliente</p>
+          <p (click)="redirectToComponent('business')">Empresas</p>
+        </div>
       </div>
+      <!-- BUSCAR SERVICOS - CLIENTES -->
+      <div class="customer-data" *ngIf="getStep()=='customer'">
+        <h2>Busque serviços</h2>
+        <div>
+          <input type="text" placeholder="Digite o serviço que deseja">
+          <button >Buscar</button>
+          <div>
+            <h3>Resultados</h3>
+            <div>
+              <p>Nome do serviço</p>
+              <p>Nome do prestador</p>
+              <p>Endereço</p>
+              <p>Telefone</p>
+              <p>Horário</p>
+              <button>Agendar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUSCAR PEDIDOS - EMPRESAS -->
+       <div class="business-data" *ngIf="getStep()=='business'">
+        <h2>Seus agendamentos</h2>
+       </div>
     </div>
 </body>
-  

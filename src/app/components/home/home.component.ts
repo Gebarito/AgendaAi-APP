@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  currentStep = 'home';
+
   constructor(
     private router: Router,
     private authService: AuthService
@@ -15,16 +17,13 @@ export class HomeComponent {
     console.log(' INIT - HOME COMPONENT - APPLICATION LOADED');
   }
 
-  redirectToComponent(component: string) {
-    this.router.navigate(['/' + component]);
+  public redirectToComponent(component: string) {
+    this.currentStep = component;
   }
 
-  isInSession() {
-    return this.authService.isInSession();
+  getStep() {
+    return this.currentStep;
   }
 
-  outOfHome() {
-    return this.router.url !== 'home';
-  }
 
 }
