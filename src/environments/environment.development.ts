@@ -1,3 +1,3 @@
 export const environment = {
-    api: `https://ec2-54-237-197-180.compute-1.amazonaws.com`,
+    api: 'http://ec2-54-208-187-107.compute-1.amazonaws.com:8080',
 };

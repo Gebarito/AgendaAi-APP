@@ -68,7 +68,7 @@ export class CustomerComponent {
     this.customer$ = this.customerService.getCustomerByCpf(cpf);
   }
 
-  postCustomer(customer: any) {
+  postCustomer(customer: Customer) {
     this.customerService.postCustomer(customer);
   }
 
