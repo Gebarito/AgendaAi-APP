@@ -15,8 +15,8 @@
         </h3>
       </div>
         <div class="buttons-container">
-          <p (click)="redirectToComponent('customer-login')">Cliente</p>
-          <p (click)="redirectToComponent('business-login')">Empresas</p>
+          <p (click)="redirectToComponent('customer-order')">Cliente</p>
+          <p (click)="redirectToComponent('business')">Empresas</p>
         </div>
       </div>
 
@@ -54,7 +54,20 @@
 
       <!-- BUSCAR PEDIDOS - EMPRESAS -->
        <div class="business-data" *ngIf="getStep()=='business'">
-        <h2>Seus agendamentos</h2>
+        <h2>Seus serviços</h2>
+        <tr *ngFor="let job of jobs$ | async">
+          <td> {{ job.name }}</td>
+          <td> {{ job.description }} </td>
+        </tr>
+        <h2>Seus pedidos</h2>
+        <tr *ngFor="let order of order$ | async">
+          <h4>Você tem um pedido de: </h4>
+          <td> {{ order.job?.name}} </td>
+          <p>R$</p>
+          <td> {{ order.amount }}</td>
+          <p>Agendado para: </p>
+          <td> {{ order.dateAppointment }} </td>
+        </tr>
        </div>
     </div>
 </body>
