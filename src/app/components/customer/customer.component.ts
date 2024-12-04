@@ -43,6 +43,7 @@ export class CustomerComponent {
         customer.cpf === this.cpf
       ){
         this.authservice.login('customer', customer);
+        console.log('entrou')
       }
     });
   }
