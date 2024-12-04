@@ -144,4 +144,12 @@ export class HomeComponent {
       .subscribe(_ => this.getOrders());
   }
 
+  cancelar() {
+    this.orderService.deleteOrder(this.id)
+      .subscribe(_ => this.getOrders());
+  }
+
+  setId(id: any) {
+    this.id = id;
+  }
 }

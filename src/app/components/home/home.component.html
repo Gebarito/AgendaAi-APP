@@ -15,7 +15,7 @@
         </h3>
       </div>
         <div class="buttons-container">
-          <p (click)="redirectToComponent('customer-order')">Cliente</p>
+          <p (click)="redirectToComponent('customer')">Cliente</p>
           <p (click)="redirectToComponent('business')">Empresas</p>
         </div>
       </div>
@@ -38,15 +38,20 @@
         <div>
           <input type="text" placeholder="Digite o serviço que deseja">
           <button >Buscar</button>
-          <div>
-            <h3>Resultados</h3>
+          <div>Servicos:</div>
+          <tr *ngFor="let job of jobs$ | async">
+            <td> {{ job.name }}</td>
+            <td> {{ job.description }} </td>
+            <button (click)="createOrder()"> Agendar </button>
+          </tr>          
+          <h3>Seus pedidos</h3>
+          <div *ngFor="let order of order$ |async">
             <div>
-              <p>Nome do serviço</p>
-              <p>Nome do prestador</p>
-              <p>Endereço</p>
-              <p>Telefone</p>
-              <p>Horário</p>
-              <button>Agendar</button>
+                <p> {{order.job?.name}} </p>
+                <p> preco: R${{ order.amount}}</p>
+                <button (click)="setId(order.id); cancelar()">Cancelar</button>
+              <div> 
+              </div>
             </div>
           </div>
         </div>
