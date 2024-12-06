@@ -30,7 +30,8 @@ export class CustomerService {
     getCustomerByCpf(
         cpf: string
     ) {
-        return this.httpclient.get<Customer>(`${this.url}/${cpf}`);
+        return this.httpclient.get<Customer>(`${this.url}/cpf?cpf=${cpf}`);
+        
     }
 
     editCustomer(

@@ -12,7 +12,7 @@ export class OrderComponent {
   order$ = new Observable<Order[]>();
 
   /** form */
-  id = '';
+  orderId = '';
   amount = 0;
   status = '';
   dateCreated = new Date();
@@ -44,9 +44,9 @@ export class OrderComponent {
     }).subscribe(_ => this.getOrders());
   }
 
-  updateJob() {
-    this.orderService.editJob({
-      id: this.id,
+  updateOrder() {
+    this.orderService.editOrder({
+      id: this.orderId,
       amount: this.amount,
       status: this.status,
       dateCreated: this.dateCreated,
@@ -55,7 +55,7 @@ export class OrderComponent {
   }
 
   autoCompleteField(order: Order) {
-    this.id = order.id?.toString() || '';
+    this.orderId = order.id?.toString() || '';
     this.amount = order.amount;
     this.status = order.status;
     this.dateCreated = order.dateCreated;

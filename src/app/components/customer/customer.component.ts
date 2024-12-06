@@ -43,7 +43,7 @@ export class CustomerComponent {
         customer.cpf === this.cpf
       ){
         this.authservice.login('customer', customer);
-        console.log('Entrou');
+        console.log('entrou')
       }
     });
   }
@@ -59,7 +59,6 @@ export class CustomerComponent {
       cep: this.cep,
       address: this.address,
     }).subscribe();
-    console.log('Entrou')
   }
 
   toggleRegister() {
@@ -70,7 +69,7 @@ export class CustomerComponent {
     this.customer$ = this.customerService.getCustomerByCpf(cpf);
   }
 
-  postCustomer(customer: any) {
+  postCustomer(customer: Customer) {
     this.customerService.postCustomer(customer);
   }
 

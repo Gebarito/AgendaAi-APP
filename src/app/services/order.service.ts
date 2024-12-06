@@ -23,7 +23,7 @@ export class OrderService {
         return this.httpClient.post<Order>(this.url + '/new', order);
     }
 
-    editJob(
+    editOrder(
         order: Order
     ) {
         return this.httpClient.put<Order>(`${this.url}/${order.id}}`, order);
