@@ -15,10 +15,20 @@
         </h3>
       </div>
         <div class="buttons-container">
-          <p (click)="redirectToComponent('customer')">Cliente</p>
-          <p (click)="redirectToComponent('business')">Empresas</p>
+          <p (click)="redirectToComponent('login-customer')">Cliente</p>
+          <p (click)="redirectToComponent('login-business')">Empresas</p>
         </div>
       </div>
+      <!-- LOGIN -->
+      <!-- Clientes -->
+      <div class="login" *ngIf="getStep()=='login-customer'">
+        <app-customer></app-customer>
+      </div>
+      <!-- Empresas -->
+      <div class="login" *ngIf="getStep()=='login-business'">
+        <app-business></app-business>
+      </div>
+
       <!-- BUSCAR SERVICOS - CLIENTES -->
       <div class="customer-data" *ngIf="getStep()=='customer'">
         <h2>Busque serviços</h2>

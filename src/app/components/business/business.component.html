@@ -1,8 +1,7 @@
 <router-outlet></router-outlet>
-<app-navbar></app-navbar>
 
 <div class="customer-container">
-    <div class="data-container" *ngIf="!authService.isInSession()">
+    <div class="data-container" *ngIf="authService.isInSession()">
         <div class="login" *ngIf="haveAccount">
             <form>
                 <div>
@@ -39,7 +38,7 @@
         </div>
         <p (click)="toggleRegister()"> {{this.haveAccount ? 'Cadastre-se agora!' : 'Ja possui uma conta? Entre!'}}</p>
     </div>
-    <div class="already-logged-in" *ngIf="authService.isInSession()">
+    <div class="already-logged-in" *ngIf="!authService.isInSession()">
         <div class="user-data">
             <h2>Olá, ...</h2>
             <hr>
