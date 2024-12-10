@@ -11,7 +11,9 @@
                     <label>Password: </label>
                     <input type="password"/>
                 </div>
-                <button (click)="entrar()">Entrar</button>
+                <div class="buttons-container">
+                    <button (click)="entrar()">Entrar</button>
+                </div>
             </form>
         </div>
         <div class="register" *ngIf="!haveAccount">

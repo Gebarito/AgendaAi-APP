@@ -14,65 +14,63 @@
           Confiável e seguro!
         </h3>
       </div>
-        <div class="buttons-container">
-          <p (click)="redirectToComponent('login-customer')">Cliente</p>
-          <p (click)="redirectToComponent('login-business')">Empresas</p>
-        </div>
+      <div class="buttons-container">
+        <p (click)="redirectToComponent('login-customer')">Cliente</p>
+        <p (click)="redirectToComponent('login-business')">Empresas</p>
       </div>
+    </div>
 
-      <!-- LOGIN -->
+    <!-- LOGIN -->
 
-      <!-- Cliente-->
-      <div class="customer-login" *ngIf="getStep()=='customer-login'">
-        <app-customer></app-customer>
-      </div>
+    <!-- Cliente-->
+    <div class="customer-login" *ngIf="getStep()=='customer-login'">
+      <app-customer></app-customer>
+    </div>
 
-      <!-- Empresa-->
-      <div class="business-login" *ngIf="getStep()=='business-login'">
-        <app-business></app-business>
-      </div>
+    <!-- Empresa-->
+    <div class="business-login" *ngIf="getStep()=='business-login'">
+      <app-business></app-business>
+    </div>
 
-      <!-- BUSCAR SERVICOS - CLIENTES -->
-      <div class="customer-data" *ngIf="getStep()=='customer'">
-        <h2>Busque serviços</h2>
-        <div>
-          <input type="text" placeholder="Digite o serviço que deseja">
-          <button >Buscar</button>
-          <div>Servicos:</div>
-          <tr *ngFor="let job of jobs$ | async">
-            <td> {{ job.name }}</td>
-            <td> {{ job.description }} </td>
-            <button (click)="createOrder()"> Agendar </button>
-          </tr>          
-          <h3>Seus pedidos</h3>
-          <div *ngFor="let order of order$ |async">
-            <div>
-                <p> {{order.job?.name}} </p>
-                <p> preco: R${{ order.amount}}</p>
-                <button (click)="setId(order.id); cancelar()">Cancelar</button>
-              <div> 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BUSCAR PEDIDOS - EMPRESAS -->
-       <div class="business-data" *ngIf="getStep()=='business'">
-        <h2>Seus serviços</h2>
+    <!-- BUSCAR SERVICOS - CLIENTES -->
+    <div class="customer-data" *ngIf="getStep()=='customer'">
+      <h2>Busque serviços</h2>
+      <div>
+        <input type="text" placeholder="Digite o serviço que deseja">
+        <button>Buscar</button>
+        <div>Servicos:</div>
         <tr *ngFor="let job of jobs$ | async">
           <td> {{ job.name }}</td>
           <td> {{ job.description }} </td>
+          <button (click)="createOrder()"> Agendar </button>
         </tr>
-        <h2>Seus pedidos</h2>
-        <tr *ngFor="let order of order$ | async">
-          <h4>Você tem um pedido de: </h4>
-          <td> {{ order.job?.name}} </td>
-          <p>R$</p>
-          <td> {{ order.amount }}</td>
-          <p>Agendado para: </p>
-          <td> {{ order.dateAppointment }} </td>
-        </tr>
-       </div>
+        <h3>Seus pedidos</h3>
+        <div *ngFor="let order of order$ | async">
+          <div>
+            <p> {{ order.job?.name }} </p>
+            <p> preço: R${{ order.amount }}</p>
+            <button (click)="setId(order.id); cancelar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- BUSCAR PEDIDOS - EMPRESAS -->
+    <div class="business-data" *ngIf="getStep()=='business'">
+      <h2>Seus serviços</h2>
+      <tr *ngFor="let job of jobs$ | async">
+        <td> {{ job.name }}</td>
+        <td> {{ job.description }} </td>
+      </tr>
+      <h2>Seus pedidos</h2>
+      <tr *ngFor="let order of order$ | async">
+        <h4>Você tem um pedido de: </h4>
+        <td> {{ order.job?.name }} </td>
+        <p>R$</p>
+        <td> {{ order.amount }}</td>
+        <p>Agendado para: </p>
+        <td> {{ order.dateAppointment }} </td>
+      </tr>
+    </div>
+  </div>
 </body>
