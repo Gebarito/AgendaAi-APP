@@ -6,35 +6,15 @@ on:
       - main 
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: [self-hosted, Windows, X64]
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v3
-
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Deploy to EC2
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} << 'EOF'
-          # Clonar repositório
-          git clone https://github.com/Gebarito/AgendaAi-APP.git || (cd AgendaAi-APP && git pull)
-
-          # Entrar no diretório do projeto
-          cd AgendaAi-APP
-
-          # Instalar dependências
-          npm install
-
-          # Construir o projeto Angular em modo de produção
-          ng build --configuration production
-
-          # Servir a aplicação usando uma ferramenta como 'http-server'
-
-          npm install -g http-server
-          nohup http-server dist/AgendaAi-APP -p 80 &
-        EOF
+      - uses: actions/checkout@v2
+      - run: Start-CodeScan -pfcond 'fail-if:risk=mediumup' -output 'report.pdf'
+      - name: 'Syhunt Report'
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+         name: syhunt-report
+         path: report.pdf
+         if-no-files-found: error
