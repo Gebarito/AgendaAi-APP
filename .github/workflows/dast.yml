@@ -10,10 +10,10 @@ jobs:
   build:
     runs-on: [self-hosted, Windows, X64]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: Start-DynamicScan -target 'www.productionurl.com' -pfcond 'fail-if:risk=mediumup' -output 'report.pdf'
       - name: 'Syhunt Report'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
          name: syhunt-report
