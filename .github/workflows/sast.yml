@@ -1,11 +1,11 @@
-# This workflow will add syhunt reports to the build process.
+# This workflow will add syhunt sast reports to the build process.
 # For more information, see https://www.syhunt.com/pt/?n=Docs.SyhuntIntegrationGitHub
 
-name: Syhunt test
+name: Syhunt SAST test
 on:
   push:
     branches:
-      - main 
+      - main
 jobs:
   build:
     runs-on: [self-hosted, Windows, X64]
