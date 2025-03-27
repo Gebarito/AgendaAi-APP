@@ -11,7 +11,7 @@ jobs:
     runs-on: [self-hosted, Windows, X64]
     steps:
       - uses: actions/checkout@v4
-      - run: ScanConf -target 'www.productionurl.com' -pfcond 'fail-if:risk=mediumup' -output 'report.pdf'
+      - run: ScanConf.exe https://github.com/Gebarito/AgendaAi-APP.git
       - name: 'Syhunt Report'
         uses: actions/upload-artifact@v4
         if: failure()
