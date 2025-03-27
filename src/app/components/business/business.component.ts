@@ -1,4 +1,3 @@
-import { AuthService } from 'src/app/services/auth.service';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Business } from 'src/app/models/business.model';
@@ -13,7 +12,6 @@ export class BusinessComponent {
   business$ = new Observable<Business[]>();
 
   haveAccount = false;
-  authService: AuthService;
 
   /** form */
   id = 0;
@@ -25,11 +23,8 @@ export class BusinessComponent {
   cep = '';
   address = '';
   constructor(
-    private authservice: AuthService,
     private businessService: BusinessService,
-  ) {
-    this.authService = authservice;
-  }
+  ) {}
 
   toggleRegister() {
     this.haveAccount = !this.haveAccount;
